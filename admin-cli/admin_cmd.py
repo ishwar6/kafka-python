@@ -19,7 +19,7 @@ async def startup_event():
     This function will run on startup and will create a topic if not existing already.
     '''
     client = KafkaAdminClient(bootstrap_servers=BOOTSTRAP_SERVERS)
-    topic = NewTopic(name=TOPIC_NAME, num_partitions=2, replication_factor=1)
+    topic = NewTopic(name=TOPIC_NAME, num_partitions=1, replication_factor=1)
 
     try:
         client.create_topics([topic])
