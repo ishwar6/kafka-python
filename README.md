@@ -50,3 +50,14 @@ In Apache Kafka, data is organized into topics, and each topic is split into a n
 Each partition can have multiple replicas, and one of the replicas is designated as the leader. The other replicas are followers. The leader is responsible for handling write requests and the followers replicate the data from the leader.
 
 In-sync replicas (ISRs) are replicas that are fully caught up to the leader and are able to take over as leader if the current leader goes down. In other words, ISRs are the replicas that are considered "healthy" and able to take over leadership if needed.
+
+## To start consumer and producer in docker compose
+
+```
+docker exec -it devops_kafka-2_1 kafka-topics  --bootstrap-server localhost:9092 --create --topic test
+docker exec -it devops_kafka-2_1 kafka-topics  --bootstrap-server localhost:9092 --list  
+
+docker exec -it devops_kafka-2_1 kafka-console-producer  --bootstrap-server localhost:9092 --topic ishwar-topic
+docker exec -it devops_kafka-2_1 kafka-console-consumer  --bootstrap-server localhost:9092 --topic ishwar-topic —from-beginning
+
+```
