@@ -1,5 +1,6 @@
 # kafka-python
 Detailed overview of APIs provided by Apache Kafka. 
+Youtube Link: https://www.youtube.com/watch?v=R2QrUmCVZRU
 
 ## To run the kafka docker-compose file
 
