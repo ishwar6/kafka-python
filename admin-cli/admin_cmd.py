@@ -70,7 +70,6 @@ def make_producer():
   return producer
 
 
-
 @app.post('/api/people', status_code=201, response_model=List[Person])
 async def create_people(cmd: CreatePeopleCommand):
   people: List[Person] = []
