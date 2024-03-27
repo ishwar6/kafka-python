@@ -13,7 +13,6 @@ services:
     depends_on:
       - zookeeper-1
   
-
     ports:
       - 29092:29092
     environment:
