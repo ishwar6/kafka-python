@@ -62,3 +62,43 @@ docker exec -it devops_kafka-2_1 kafka-console-producer  --bootstrap-server loca
 docker exec -it devops_kafka-2_1 kafka-console-consumer  --bootstrap-server localhost:9092 --topic ishwar-topic —from-beginning
 
 ```
+
+## Kafka to Redshift ETL
+
+This repository includes a pipeline that consumes messages from Kafka and loads them into an Amazon Redshift table.
+
+### Prerequisites
+
+1. A running Kafka cluster. The existing docker-compose setup can be used.
+2. An Amazon Redshift cluster with a table created to receive data.
+3. Environment variables configured:
+   - `BOOTSTRAP_SERVERS`
+   - `KAFKA_TOPIC`
+   - `REDSHIFT_HOST`
+   - `REDSHIFT_PORT` (optional, defaults to 5439)
+   - `REDSHIFT_USER`
+   - `REDSHIFT_PASSWORD`
+   - `REDSHIFT_DB`
+   - `REDSHIFT_TABLE`
+
+### Running the Pipeline
+
+Install dependencies:
+
+```bash
+pip install -r req.txt
+```
+
+Start producing messages using the FastAPI application:
+
+```bash
+uvicorn admin_cmd:app --reload
+```
+
+Run the ETL consumer that writes to Redshift:
+
+```bash
+python -m etl
+```
+
+Messages published to the configured Kafka topic are transformed and inserted into the specified Redshift table.
